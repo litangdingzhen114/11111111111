@@ -1,0 +1,62 @@
+---
+title: "Workflow Automation App"
+slug: "workflow-automation-app"
+description: "An internal productivity tool automating repetitive workflows using rule-based triggers and edge functions."
+role: "Product Manager / Full-stack Developer"
+stack: ["Next.js", "Supabase", "Edge Functions", "Tailwind CSS"]
+type: ["Productivity", "Internal Tool"]
+year: "2023"
+---
+
+## Overview
+
+A workflow automation platform for internal teams that automates repetitive processes — from onboarding checklists to cross-department approval chains — using configurable triggers and actions.
+
+## Context
+
+A growing startup with 80+ employees found that operational tasks (employee onboarding, expense approvals, client intake) were handled through a mix of Slack messages, Google Sheets, and manual emails. This led to dropped tasks, inconsistent processes, and frustrated team leads.
+
+## Problem
+
+- No single source of truth for multi-step workflows
+- Task handoffs between departments were lost in Slack threads
+- New employee onboarding took 2 weeks instead of the target 3 days
+- No visibility into workflow bottlenecks or completion rates
+
+## My Role
+
+As **Product Manager**, I mapped existing workflows through stakeholder interviews, identified automation opportunities, and prioritized based on time-savings impact. As **Full-stack Developer**, I designed the event-driven architecture and built the full application.
+
+## Product Decisions
+
+1. **Visual workflow builder**: Non-technical team leads can create automation flows using a drag-and-drop interface with triggers, conditions, and actions.
+2. **Event-driven architecture**: Supabase Edge Functions process events in real-time, enabling instant notifications and task assignments.
+3. **Template library**: Pre-built templates for common workflows (onboarding, approvals, client intake) to reduce setup friction.
+
+## UX Flow
+
+1. Admin creates a workflow using the visual builder
+2. Defines trigger (e.g., "new employee added to HR system")
+3. Adds steps: assign tasks, send notifications, wait for approval, branch on conditions
+4. Activates the workflow
+5. Dashboard shows real-time status of all active workflow instances
+
+## Technical Implementation
+
+- **Frontend**: Next.js App Router with a custom drag-and-drop workflow builder
+- **Backend**: Supabase Edge Functions for event processing
+- **Database**: Supabase PostgreSQL with real-time subscriptions for live status updates
+- **Notifications**: Integration with Slack API and email via Resend
+- **Auth**: Supabase Auth with team-based access control
+- **Monitoring**: Custom analytics dashboard showing workflow completion rates and bottlenecks
+
+## Result
+
+- Onboarding time reduced from **2 weeks to 3 days**
+- **85%** of repetitive operational tasks automated
+- Team leads saved an average of **5 hours per week**
+- Zero dropped handoffs reported in the first 3 months
+
+## Reflection
+
+The hardest part wasn't the technology — it was understanding the messy, informal workflows that existed in people's heads. Spending time shadowing team leads and mapping their actual (not documented) processes was essential. I also learned that error handling in workflow automation is critical — when a step fails, the system needs clear retry logic and human escalation paths.
