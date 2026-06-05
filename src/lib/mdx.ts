@@ -12,6 +12,7 @@ export interface ProjectFrontmatter {
   stack: string[];
   type: string[];
   year: string;
+  customLayout?: boolean;
 }
 
 export interface ProjectMDX {

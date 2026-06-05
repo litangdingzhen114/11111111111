@@ -1,42 +1,47 @@
 "use client";
 
 export default function ContactForm() {
+  const openMail = () => {
+    window.location.href =
+      "mailto:llf374603@gmail.com?subject=作品集项目沟通";
+  };
+
   return (
-    <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8">
-      <h2 className="text-xl font-bold text-white mb-6">Send a message</h2>
-      <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+    <div className="rounded-[8px] border border-white/[0.06] bg-white/[0.02] p-5 sm:rounded-2xl sm:p-8">
+      <h2 className="text-xl font-bold text-white mb-6">快速留言</h2>
+      <form className="space-y-5 sm:space-y-6" onSubmit={(e) => e.preventDefault()}>
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">Name</label>
-          <input type="text" id="name" placeholder="Your name"
-            className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-purple-500/30 focus:ring-1 focus:ring-purple-500/20 transition-all" />
+          <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-2">姓名</label>
+          <input type="text" id="name" placeholder="你的名字"
+            className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-gray-600 transition-all focus:border-primary/30 focus:outline-none focus:ring-1 focus:ring-primary/20" />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">Email</label>
+          <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-2">邮箱</label>
           <input type="email" id="email" placeholder="you@example.com"
-            className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-purple-500/30 focus:ring-1 focus:ring-purple-500/20 transition-all" />
+            className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-gray-600 transition-all focus:border-primary/30 focus:outline-none focus:ring-1 focus:ring-primary/20" />
         </div>
         <div>
-          <label htmlFor="project" className="block text-sm font-medium text-gray-400 mb-2">Project Type</label>
+          <label htmlFor="project" className="block text-sm font-medium text-gray-400 mb-2">项目类型</label>
           <select id="project"
-            className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-gray-400 focus:outline-none focus:border-purple-500/30 focus:ring-1 focus:ring-purple-500/20 transition-all">
-            <option value="">Select a project type</option>
-            <option value="web-app">Web Application</option>
-            <option value="saas">SaaS Product</option>
-            <option value="ai">AI Integration</option>
-            <option value="consulting">Product Consulting</option>
-            <option value="other">Other</option>
+            className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-gray-400 transition-all focus:border-primary/30 focus:outline-none focus:ring-1 focus:ring-primary/20">
+            <option value="">选择项目类型</option>
+            <option value="web-app">Web 应用</option>
+            <option value="saas">SaaS 产品</option>
+            <option value="ai">AI 功能集成</option>
+            <option value="consulting">产品咨询</option>
+            <option value="other">其他</option>
           </select>
         </div>
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">Message</label>
-          <textarea id="message" rows={5} placeholder="Tell me about your project..."
-            className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-purple-500/30 focus:ring-1 focus:ring-purple-500/20 transition-all resize-none" />
+          <label htmlFor="message" className="block text-sm font-medium text-gray-400 mb-2">项目说明</label>
+          <textarea id="message" rows={5} placeholder="简单介绍一下你的项目..."
+            className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-gray-600 transition-all resize-none focus:border-primary/30 focus:outline-none focus:ring-1 focus:ring-primary/20" />
         </div>
-        <button type="submit"
-          className="w-full rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 py-3 text-sm font-semibold text-white shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 transition-all hover:scale-[1.01]">
-          Send Message
+        <button type="button" onClick={openMail}
+          className="site-primary-cta w-full rounded-xl py-3 text-sm font-semibold transition-all hover:scale-[1.01]">
+          打开邮箱联系我
         </button>
-        <p className="text-center text-xs text-gray-600">I&apos;ll get back to you within 24 hours.</p>
+        <p className="text-center text-xs text-gray-600">当前表单用于整理沟通信息，实际发送会打开邮箱。</p>
       </form>
     </div>
   );

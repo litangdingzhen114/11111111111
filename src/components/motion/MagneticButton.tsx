@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion } from "motion/react";
+import { useRef } from "react";
+import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
 
 interface MagneticButtonProps {
   children: React.ReactNode;
@@ -17,24 +17,28 @@ export default function MagneticButton({
   onClick,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const reducedMotion = useReducedMotion();
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const x = useSpring(rawX, { stiffness: 180, damping: 18, mass: 0.12 });
+  const y = useSpring(rawY, { stiffness: 180, damping: 18, mass: 0.12 });
 
   const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!ref.current) return;
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReducedMotion) return;
+    if (reducedMotion || window.matchMedia("(pointer: coarse)").matches) return;
 
     const { clientX, clientY } = e;
     const { left, top, width, height } = ref.current.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
     const middleY = clientY - (top + height / 2);
-    setPosition({ x: middleX * strength, y: middleY * strength });
+    rawX.set(middleX * strength);
+    rawY.set(middleY * strength);
   };
 
-  const reset = () => setPosition({ x: 0, y: 0 });
+  const reset = () => {
+    rawX.set(0);
+    rawY.set(0);
+  };
 
   return (
     <motion.div
@@ -42,8 +46,7 @@ export default function MagneticButton({
       onMouseMove={handleMouse}
       onMouseLeave={reset}
       onClick={onClick}
-      animate={{ x: position.x, y: position.y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      style={{ x, y }}
       className={className}
     >
       {children}

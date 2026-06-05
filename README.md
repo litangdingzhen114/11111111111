@@ -1,42 +1,42 @@
-# My Portfolio
+# 我的作品集
 
-A premium dark-mode portfolio website built with **Next.js 15**, **TypeScript**, **Tailwind CSS**, **Three.js**, **GSAP**, and **Motion**.
+一个高级暗色风格的个人作品集网站，使用 **Next.js 16**、**TypeScript**、**Tailwind CSS**、**Three.js**、**GSAP** 和 **Motion** 构建。
 
-## Quick Start
+## 快速开始
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-Visit [http://localhost:3000](http://localhost:3000)
+访问 [http://localhost:3000](http://localhost:3000)
 
-## Tech Stack
+## 技术栈
 
-| Category | Technology |
-|----------|-----------|
-| Framework | Next.js 15 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS v4 + shadcn/ui |
+| 分类 | 技术 |
+| --- | --- |
+| 框架 | Next.js 16 (App Router) |
+| 语言 | TypeScript |
+| 样式 | Tailwind CSS v4 + shadcn/ui |
 | 3D | Three.js + React Three Fiber + Drei |
-| Animation | GSAP + @gsap/react + Motion |
-| Smooth Scroll | Lenis |
-| Content | MDX (next-mdx-remote + gray-matter) |
-| Icons | lucide-react |
+| 动效 | GSAP + @gsap/react + Motion |
+| 平滑滚动 | Lenis |
+| 内容 | MDX (next-mdx-remote + gray-matter) |
+| 图标 | lucide-react |
 
-## How to Add a Project
+## 添加项目
 
-1. Add metadata to `src/data/projects.ts`
-2. Create MDX file in `src/content/projects/[slug].mdx`
-3. Follow the case study structure
+1. 在 `src/data/projects.ts` 中添加项目元数据
+2. 在 `src/content/projects/[slug].mdx` 中创建项目详情
+3. 按现有案例结构撰写内容
 
-## How to Modify Hero Copy
+## 修改首页文案
 
-Edit `src/components/sections/Hero.tsx` — title, subtitle, CTAs, and eyebrow badge.
+编辑 `src/components/sections/Hero.tsx`，可调整标题、副标题、按钮和状态标签。
 
-## Design System
+## 设计系统
 
-- Background: `#05050A`
-- Primary: Purple-blue gradients
-- Cards: `rgba(255,255,255,0.04)` with subtle borders
-- Font: Geist Sans / Geist Mono
+- 背景色：`#05050A`
+- 主色：紫蓝渐变
+- 卡片：`rgba(255,255,255,0.04)` 半透明背景与细边框
+- 字体：Geist Sans / Geist Mono

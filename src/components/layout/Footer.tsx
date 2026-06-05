@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Mail } from "lucide-react";
 
-/* Brand icons removed from lucide-react v1.16+ — using inline SVGs */
 function GithubIcon({ size = 18 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -10,71 +9,47 @@ function GithubIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-function LinkedinIcon({ size = 18 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-    </svg>
-  );
-}
-
-function XIcon({ size = 18 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  );
-}
-
 const socialLinks = [
-  { icon: GithubIcon, href: "https://github.com", label: "GitHub" },
-  { icon: LinkedinIcon, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: XIcon, href: "https://twitter.com", label: "Twitter" },
-  { icon: Mail, href: "mailto:hello@myportfolio.com", label: "Email" },
+  { icon: GithubIcon, href: "https://github.com/litangdingzhen114", label: "GitHub" },
+  { icon: Mail, href: "mailto:llf374603@gmail.com", label: "邮箱" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/[0.06] bg-[#05050A]">
-      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-        <div className="flex flex-col items-center gap-8 md:flex-row md:justify-between">
-          {/* Logo & tagline */}
+    <footer className="border-t border-white/10 bg-background">
+      <div className="section-shell py-12">
+        <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <div className="text-center md:text-left">
             <Link
               href="/"
-              className="text-lg font-bold tracking-tight text-white"
+              className="inline-flex items-center gap-3 text-lg font-bold tracking-tight text-white transition-colors hover:text-primary"
             >
-              <span className="text-purple-400">/</span> myportfolio
+              <span className="grid h-8 w-8 place-items-center rounded-[6px] border border-white/[0.12] text-sm text-primary">
+                S
+              </span>
+              sunmaosun
             </Link>
-            <p className="mt-2 text-sm text-gray-500">
-              Product Manager & Full-stack Developer
+            <p className="mt-2 text-sm text-white/[0.42]">
+              AI 产品经理方向 / 原型开发
             </p>
           </div>
 
-          {/* Quick links */}
-          <div className="flex gap-8 text-sm text-gray-400">
-            <Link
-              href="/work"
-              className="hover:text-white transition-colors"
-            >
-              Work
+          <div className="flex justify-center gap-6 text-sm text-white/[0.48] md:gap-8">
+            <Link href="/work" className="transition-colors hover:text-primary">
+              作品
             </Link>
-            <Link
-              href="/about"
-              className="hover:text-white transition-colors"
-            >
-              About
+            <Link href="/about" className="transition-colors hover:text-primary">
+              关于
             </Link>
             <Link
               href="/contact"
-              className="hover:text-white transition-colors"
+              className="transition-colors hover:text-primary"
             >
-              Contact
+              联系
             </Link>
           </div>
 
-          {/* Social icons */}
-          <div className="flex gap-4">
+          <div className="flex justify-center gap-3">
             {socialLinks.map((link) => (
               <a
                 key={link.label}
@@ -82,7 +57,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.label}
-                className="p-2 rounded-lg text-gray-500 hover:text-white hover:bg-white/[0.06] transition-all"
+                className="rounded-[6px] border border-white/10 p-2 text-white/[0.38] transition-all hover:border-primary/40 hover:text-primary"
               >
                 <link.icon size={18} />
               </a>
@@ -90,14 +65,12 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="mt-8 pt-8 border-t border-white/[0.04] flex flex-col items-center gap-4 md:flex-row md:justify-between">
-          <p className="text-xs text-gray-600">
-            © {new Date().getFullYear()} My Portfolio. All rights reserved.
+        <div className="mt-8 flex flex-col items-center gap-4 border-t border-white/10 pt-8 md:flex-row md:justify-between">
+          <p className="text-xs text-white/30">
+            © {new Date().getFullYear()} sunmaosun. Portfolio in progress.
           </p>
-          <p className="text-xs text-gray-600">
-            Designed & Built with{" "}
-            <span className="text-purple-400">♥</span>
+          <p className="text-xs text-white/30">
+            用产品思维、AI 工作流和代码原型整理项目
           </p>
         </div>
       </div>

@@ -4,6 +4,9 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SmoothScroll from "@/components/motion/SmoothScroll";
+import WelcomePreloader from "@/components/motion/WelcomePreloader";
+import AccessibilityWidget from "@/components/accessibility/AccessibilityWidget";
+import LanguageRuntime from "@/components/accessibility/LanguageRuntime";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -11,25 +14,27 @@ const geistSans = Geist({
 });
 
 const geistMono = Geist_Mono({
-  variable: "----font-geist-mono",
+  variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Portfolio — Product Manager & Full-stack Developer",
-    template: "%s | Portfolio",
+    default: "sunmaosun - AI 产品经理作品集",
+    template: "%s | 个人项目站",
   },
   description:
-    "I combine product thinking, frontend craft, and full-stack engineering to turn ideas into usable, scalable web products.",
+    "AI 产品经理方向项目站，整理 Agent、AIGC 工作流、小程序和 Web 原型项目。",
   keywords: [
-    "Product Manager",
-    "Full-stack Developer",
-    "Frontend Developer",
+    "AI 产品经理",
+    "产品经理",
+    "AI Agent",
+    "AIGC",
+    "小程序",
+    "前端开发",
     "Next.js",
     "React",
     "TypeScript",
-    "Portfolio",
   ],
 };
 
@@ -40,15 +45,18 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="zh-CN"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="min-h-screen flex flex-col bg-[#05050A] text-white">
+      <body className="flex min-h-[100svh] flex-col bg-background text-foreground">
+        <WelcomePreloader />
         <SmoothScroll>
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
         </SmoothScroll>
+        <AccessibilityWidget />
+        <LanguageRuntime />
       </body>
     </html>
   );

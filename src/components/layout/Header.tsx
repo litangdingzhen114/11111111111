@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { navItems } from "@/data/navigation";
 import { cn } from "@/lib/utils";
@@ -20,42 +20,48 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
-    setIsMobileOpen(false);
-  }, [pathname]);
+    const root = document.documentElement;
+    const previousOverflow = root.style.overflow;
+
+    if (isMobileOpen) {
+      root.style.overflow = "hidden";
+    }
+
+    return () => {
+      root.style.overflow = previousOverflow;
+    };
+  }, [isMobileOpen]);
 
   return (
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          "fixed left-0 right-0 top-0 z-50 transition-all duration-500",
           isScrolled
-            ? "bg-[#05050A]/80 backdrop-blur-xl border-b border-white/[0.06]"
+            ? "border-b border-white/[0.06] bg-background/80 backdrop-blur-xl"
             : "bg-transparent"
         )}
       >
-        <nav className="mx-auto max-w-7xl px-6 lg:px-8">
+        <nav className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between lg:h-20">
-            {/* Logo */}
             <Link
               href="/"
-              className="text-lg font-bold tracking-tight text-white hover:text-purple-300 transition-colors"
+              className="text-lg font-bold tracking-tight text-white transition-colors hover:text-primary"
             >
-              <span className="text-purple-400">/</span> myportfolio
+              <span className="text-primary">/</span> sunmaosun
             </Link>
 
-            {/* Desktop Nav */}
-            <div className="hidden md:flex items-center gap-1">
+            <div className="hidden items-center gap-1 md:flex">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   className={cn(
-                    "px-4 py-2 text-sm font-medium rounded-lg transition-colors",
+                    "rounded-lg px-4 py-2 text-sm font-medium transition-colors",
                     pathname === item.href
-                      ? "text-white bg-white/[0.06]"
-                      : "text-gray-400 hover:text-white hover:bg-white/[0.04]"
+                      ? "bg-white/[0.06] text-white"
+                      : "text-gray-400 hover:bg-white/[0.04] hover:text-white"
                   )}
                 >
                   {item.label}
@@ -64,18 +70,17 @@ export default function Header() {
               <MagneticButton className="ml-4">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white rounded-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 transition-all shadow-lg shadow-purple-500/20"
+                  className="site-primary-cta inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all"
                 >
-                  Let&apos;s Talk
+                  联系我
                 </Link>
               </MagneticButton>
             </div>
 
-            {/* Mobile Toggle */}
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
-              className="md:hidden p-2 text-gray-400 hover:text-white transition-colors"
-              aria-label="Toggle menu"
+              className="p-2 text-gray-400 transition-colors hover:text-white md:hidden"
+              aria-label="切换菜单"
             >
               {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -83,26 +88,26 @@ export default function Header() {
         </nav>
       </header>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#05050A]/95 backdrop-blur-2xl pt-20 md:hidden"
+            transition={{ duration: 0.22 }}
+            className="fixed inset-0 z-40 min-h-[100svh] overflow-y-auto bg-background/95 pt-20 backdrop-blur-2xl md:hidden"
           >
-            <nav className="flex flex-col items-center gap-6 p-8">
+            <nav className="flex min-h-[calc(100svh-5rem)] flex-col items-center justify-center gap-6 px-6 py-8">
               {navItems.map((item, i) => (
                 <motion.div
                   key={item.href}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.05, duration: 0.22 }}
                 >
                   <Link
                     href={item.href}
+                    onClick={() => setIsMobileOpen(false)}
                     className={cn(
                       "text-2xl font-semibold transition-colors",
                       pathname === item.href
@@ -117,13 +122,14 @@ export default function Header() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navItems.length * 0.1 }}
+                transition={{ delay: navItems.length * 0.05, duration: 0.22 }}
               >
                 <Link
                   href="/contact"
-                  className="mt-4 inline-flex items-center gap-2 px-8 py-3 text-lg font-semibold text-white rounded-full bg-gradient-to-r from-purple-600 to-blue-600"
+                  onClick={() => setIsMobileOpen(false)}
+                  className="site-primary-cta mt-4 inline-flex items-center gap-2 rounded-full px-8 py-3 text-lg font-semibold"
                 >
-                  Let&apos;s Talk
+                  联系我
                 </Link>
               </motion.div>
             </nav>

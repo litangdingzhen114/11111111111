@@ -19,7 +19,7 @@ export default function RevealText({
   children,
   className = "",
   delay = 0,
-  y = 40,
+  y = 24,
   as: Tag = "div",
 }: RevealTextProps) {
   const ref = useRef<HTMLDivElement>(null);
@@ -31,6 +31,7 @@ export default function RevealText({
       const prefersReducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
       ).matches;
+      const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
 
       if (prefersReducedMotion) {
         gsap.set(ref.current, { opacity: 1, y: 0 });
@@ -39,13 +40,13 @@ export default function RevealText({
 
       gsap.fromTo(
         ref.current,
-        { opacity: 0, y },
+        { opacity: 0, y: coarsePointer ? Math.min(y, 12) : y },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          delay,
-          ease: "power3.out",
+          duration: coarsePointer ? 0.42 : 0.58,
+          delay: coarsePointer ? Math.min(delay, 0.08) : delay,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: ref.current,
             start: "top 85%",

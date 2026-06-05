@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mail, Calendar, MapPin, ArrowUpRight } from "lucide-react";
+import { Mail, Globe, MapPin, ArrowUpRight } from "lucide-react";
 import ContactForm from "@/components/sections/ContactForm";
 
 function GithubIcon({ size = 18 }: { size?: number }) {
@@ -10,57 +10,50 @@ function GithubIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-function LinkedinIcon({ size = 18 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-    </svg>
-  );
-}
-
 export const metadata: Metadata = {
-  title: "Contact",
-  description: "Get in touch — let's build something great together.",
+  title: "联系我",
+  description: "欢迎联系我，一起聊聊 AI 产品、前端原型或小程序项目。",
 };
 
 const contactLinks = [
-  { icon: Mail, label: "Email", value: "hello@myportfolio.com", href: "mailto:hello@myportfolio.com" },
-  { icon: GithubIcon, label: "GitHub", value: "github.com/myportfolio", href: "https://github.com" },
-  { icon: LinkedinIcon, label: "LinkedIn", value: "linkedin.com/in/myportfolio", href: "https://linkedin.com" },
-  { icon: Calendar, label: "Calendly", value: "Book a call", href: "https://calendly.com" },
+  { icon: Mail, label: "邮箱", value: "llf374603@gmail.com", href: "mailto:llf374603@gmail.com" },
+  { icon: GithubIcon, label: "GitHub", value: "github.com/litangdingzhen114", href: "https://github.com/litangdingzhen114" },
+  { icon: Globe, label: "作品集", value: "www.sunmaosun.com", href: "https://personal.sun.com" },
+  { icon: MapPin, label: "所在城市", value: "杭州", href: "https://maps.google.com/?q=Hangzhou" },
 ];
 
 export default function ContactPage() {
   return (
-    <div className="pt-32 pb-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
+    <div className="pt-28 pb-20 sm:pt-32 sm:pb-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-purple-400">Contact</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary">联系</p>
             <h1 className="mt-3 text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
-              Let&apos;s build<br />
-              <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">something great.</span>
+              一起把
+              <br />
+              <span className="text-gradient">好想法做出来。</span>
             </h1>
-            <p className="mt-6 text-lg text-gray-400 leading-relaxed">
-              Have a project in mind? Want to discuss a product idea? Or just want to say hi? I&apos;d love to hear from you.
+            <p className="mt-6 text-base leading-7 text-gray-400 sm:text-lg sm:leading-relaxed">
+              如果你想了解我的项目细节，或者有 AI 产品、前端原型、小程序相关机会，欢迎发消息给我。
             </p>
             <div className="mt-8 flex items-center gap-2 text-sm text-gray-500">
-              <MapPin size={14} /> Remote / Worldwide
+              <MapPin size={14} /> 杭州 / 可远程沟通
             </div>
             <div className="mt-10 space-y-4">
               {contactLinks.map((link) => (
                 <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
-                  className="group flex items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 hover:border-purple-500/20 hover:bg-white/[0.04] transition-all">
-                  <div className="flex items-center gap-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/10">
+                  className="project-card-surface group flex items-center justify-between gap-3 rounded-[8px] border p-4 transition-all sm:rounded-xl">
+                  <div className="flex min-w-0 items-center gap-3 sm:gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-primary/15 bg-primary/10 text-primary">
                       <link.icon size={18} />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <p className="text-sm font-semibold text-white">{link.label}</p>
-                      <p className="text-xs text-gray-500">{link.value}</p>
+                      <p className="truncate text-xs text-gray-500">{link.value}</p>
                     </div>
                   </div>
-                  <ArrowUpRight size={16} className="text-gray-600 group-hover:text-purple-400 transition-colors" />
+                  <ArrowUpRight size={16} className="shrink-0 text-gray-600 transition-colors group-hover:text-primary" />
                 </a>
               ))}
             </div>

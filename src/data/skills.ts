@@ -11,8 +11,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-/* ─── Capabilities ─────────────────────────── */
-
 export interface Capability {
   title: string;
   description: string;
@@ -21,32 +19,30 @@ export interface Capability {
 
 export const capabilities: Capability[] = [
   {
-    title: "Product Strategy",
+    title: "AI 产品设计",
     icon: Lightbulb,
     description:
-      "Market research, requirement analysis, MVP planning, roadmaps, and user-centric analytics to shape the right product.",
+      "围绕 Agent、RAG、AIGC 工作流和垂直行业助手，拆解用户场景、MVP 范围、流程和风险边界。",
   },
   {
-    title: "Frontend Experience",
+    title: "交互原型",
     icon: Code2,
     description:
-      "React, Next.js, TypeScript, Tailwind CSS — crafting performant, accessible, and visually stunning interfaces.",
+      "使用 React、Next.js、TypeScript、Vite、Tailwind CSS 和微信小程序快速做出可演示的产品原型。",
   },
   {
-    title: "Full-stack Engineering",
+    title: "全栈落地",
     icon: Server,
     description:
-      "API design, databases, authentication, serverless functions, and DevOps to deliver end-to-end solutions.",
+      "用 FastAPI、Express、SQLite、JSON 数据服务和流式接口，把 AI 能力接到真实页面和业务流程里。",
   },
   {
-    title: "AI / SaaS Prototyping",
+    title: "内容与数据验证",
     icon: Sparkles,
     description:
-      "Integrating LLMs, building AI-powered features, and shipping SaaS MVPs from concept to production.",
+      "通过对话日志、意图分布、打卡指标、内容播放数据等反馈，判断原型是否真的解决问题。",
   },
 ];
-
-/* ─── Process Steps ────────────────────────── */
 
 export interface ProcessStep {
   number: string;
@@ -58,42 +54,35 @@ export interface ProcessStep {
 export const processSteps: ProcessStep[] = [
   {
     number: "01",
-    title: "Discover",
+    title: "拆场景",
     icon: Search,
-    description:
-      "Understand user needs, business goals, and market context through research and stakeholder interviews.",
+    description: "先确认用户是谁、任务是什么、失败点在哪里，再决定 AI 应该进入哪一段流程。",
   },
   {
     number: "02",
-    title: "Define",
+    title: "定边界",
     icon: Target,
-    description:
-      "Define the problem, validate assumptions, and plan the solution with clear requirements and scope.",
+    description: "明确 MVP 范围、模型职责、人工兜底、风险提示和可验证指标，避免功能无限扩散。",
   },
   {
     number: "03",
-    title: "Design",
+    title: "画流程",
     icon: Palette,
-    description:
-      "Design user flows, wireframes, and high-fidelity prototypes that align UX with product strategy.",
+    description: "把需求写成页面、状态、节点、输入输出和异常分支，让产品逻辑可以被讨论和实现。",
   },
   {
     number: "04",
-    title: "Build",
+    title: "做原型",
     icon: Hammer,
-    description:
-      "Write clean, scalable code — build the full product from frontend to backend, ready for users.",
+    description: "用前端、小程序、后端代理和 API 接入做出可演示版本，尽快看到真实交互效果。",
   },
   {
     number: "05",
-    title: "Iterate",
+    title: "看反馈",
     icon: RotateCcw,
-    description:
-      "Launch, gather feedback, and continuously improve based on real user data and evolving needs.",
+    description: "根据日志、内容数据、任务完成情况和用户反馈调整流程，而不是只停留在想法层面。",
   },
 ];
-
-/* ─── Tech Stack ───────────────────────────── */
 
 export interface TechItem {
   name: string;
@@ -101,21 +90,20 @@ export interface TechItem {
 }
 
 export const techStack: TechItem[] = [
-  { name: "Next.js", category: "Framework" },
-  { name: "React", category: "Library" },
-  { name: "TypeScript", category: "Language" },
-  { name: "Tailwind CSS", category: "Styling" },
-  { name: "Node.js", category: "Runtime" },
-  { name: "PostgreSQL", category: "Database" },
-  { name: "Prisma", category: "ORM" },
-  { name: "Supabase", category: "BaaS" },
-  { name: "Vercel", category: "Deploy" },
-  { name: "Figma", category: "Design" },
-  { name: "Git", category: "VCS" },
-  { name: "Docker", category: "DevOps" },
+  { name: "Next.js", category: "框架" },
+  { name: "React", category: "库" },
+  { name: "TypeScript", category: "语言" },
+  { name: "Tailwind CSS", category: "样式" },
+  { name: "Vite", category: "构建" },
+  { name: "微信小程序", category: "平台" },
+  { name: "FastAPI", category: "后端" },
+  { name: "Express", category: "后端" },
+  { name: "LangGraph", category: "Agent" },
+  { name: "Kimi API", category: "模型" },
+  { name: "Gemini API", category: "模型" },
+  { name: "SQLite", category: "数据库" },
+  { name: "Git", category: "版本控制" },
 ];
-
-/* ─── Stats ────────────────────────────────── */
 
 export interface Stat {
   value: string;
@@ -124,8 +112,8 @@ export interface Stat {
 }
 
 export const stats: Stat[] = [
-  { value: "20", suffix: "+", label: "Projects Completed" },
-  { value: "6", suffix: "+", label: "Years Experience" },
-  { value: "10", suffix: "+", label: "Industries Served" },
-  { value: "100", suffix: "%", label: "Client Satisfaction" },
+  { value: "7", label: "项目整理" },
+  { value: "3", label: "AI 产品原型" },
+  { value: "20", suffix: "+", label: "AIGC 作品产出" },
+  { value: "25", suffix: "w", label: "单条最高播放" },
 ];

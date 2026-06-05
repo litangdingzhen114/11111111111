@@ -1,46 +1,53 @@
 "use client";
 
-import { motion } from "motion/react";
-import { techStack } from "@/data/skills";
 import RevealText from "@/components/motion/RevealText";
+import { techStack } from "@/data/skills";
 
 export default function TechStack() {
-  return (
-    <section className="py-24 lg:py-32 bg-white/[0.01]">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <RevealText className="mb-16 text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-purple-400">
-            Tools & Technologies
-          </p>
-          <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-            Tech Stack
-          </h2>
-        </RevealText>
+  const firstRow = [...techStack, ...techStack];
+  const secondRow = [...techStack].reverse().concat([...techStack].reverse());
 
-        <div className="mx-auto grid max-w-4xl grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-6">
-          {techStack.map((tech, i) => (
-            <motion.div
-              key={tech.name}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05, duration: 0.4 }}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="group flex flex-col items-center gap-3 rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4 hover:border-purple-500/20 hover:bg-white/[0.04] transition-all"
+  return (
+    <section className="overflow-hidden border-y border-white/10 bg-background py-16 sm:py-20 lg:py-24">
+      <div className="section-shell">
+        <RevealText className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="section-kicker">Stack</p>
+            <h2 className="mt-4 text-3xl font-black tracking-tight text-white sm:text-5xl">
+              技术栈不是清单，
+              <br />
+              是原型验证的基础设施。
+            </h2>
+          </div>
+          <p className="max-w-sm text-sm leading-7 text-white/[0.48]">
+            从前端、小程序到后端代理和模型 API，用熟悉的工具组合快速跑通 AI 产品流程。
+          </p>
+        </RevealText>
+      </div>
+
+      <div className="space-y-3 sm:space-y-4">
+        {[firstRow, secondRow].map((row, rowIndex) => (
+          <div key={rowIndex} className="marquee-mask">
+            <div
+              className={`marquee-track flex items-center gap-4 ${
+                rowIndex === 1 ? "reverse" : ""
+              }`}
             >
-              {/* Tech initial as icon placeholder */}
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500/10 to-blue-500/10 text-sm font-bold text-purple-400 border border-purple-500/10">
-                {tech.name.slice(0, 2)}
-              </div>
-              <div className="text-center">
-                <p className="text-xs font-semibold text-white">
-                  {tech.name}
-                </p>
-                <p className="text-[10px] text-gray-600">{tech.category}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              {row.map((tech, index) => (
+                <span
+                  key={`${tech.name}-${rowIndex}-${index}`}
+                  className="inline-flex items-center gap-2 rounded-[8px] border border-white/10 bg-white/[0.035] px-3 py-2.5 text-xs text-white/[0.64] sm:gap-3 sm:px-5 sm:py-3 sm:text-sm"
+                >
+                  <span className="grid h-7 w-7 place-items-center rounded-[6px] bg-primary text-[11px] font-black text-primary-foreground sm:h-8 sm:w-8 sm:text-xs">
+                    {tech.name.slice(0, 2)}
+                  </span>
+                  <span className="font-semibold text-white">{tech.name}</span>
+                  <span className="hidden text-xs text-white/[0.34] sm:inline">{tech.category}</span>
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

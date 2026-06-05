@@ -7,49 +7,50 @@ import MagneticButton from "@/components/motion/MagneticButton";
 
 export default function ContactCTA() {
   return (
-    <section className="py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl border border-white/[0.06]">
-          {/* Gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-violet-600/10 to-blue-600/20" />
-          <div className="absolute inset-0 bg-[#05050A]/60" />
+    <section className="py-20 sm:py-24 lg:py-32">
+      <div className="section-shell">
+        <div className="theme-cta-panel relative overflow-hidden rounded-[8px] border border-white/10 text-white">
+          <div className="theme-cta-glow absolute inset-0" />
+          <div className="theme-cta-grid absolute inset-0 bg-[size:44px_44px]" />
 
-          {/* Content */}
-          <div className="relative px-8 py-20 text-center sm:px-16 lg:py-28">
+          <div className="relative grid gap-8 p-5 sm:gap-10 sm:p-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:p-12">
             <RevealText>
-              <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-                Have a project in mind?
-                <br />
-                <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                  Let&apos;s work together.
-                </span>
-              </h2>
-              <p className="mx-auto mt-6 max-w-lg text-gray-400">
-                I&apos;m always open to discussing new projects, creative ideas,
-                or opportunities to be part of your vision.
+              <p className="text-xs font-black uppercase tracking-[0.28em] text-[var(--site-accent-2)]">
+                Next Project
               </p>
-              <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <h2 className="mt-5 max-w-5xl text-[clamp(2.35rem,10vw,3rem)] font-black leading-[0.98] tracking-tight sm:text-6xl lg:text-8xl">
+                想聊 AI 产品、
+                <br />
+                原型或实习机会？
+              </h2>
+            </RevealText>
+
+            <RevealText delay={0.12} className="flex flex-col justify-end">
+              <p className="text-sm leading-7 text-white/68 sm:text-base sm:leading-8">
+                如果你想了解这些项目的细节，或者有 AI 产品、前端原型、小程序相关机会，欢迎直接联系我。
+              </p>
+              <div className="mt-8 flex flex-col gap-3">
                 <MagneticButton>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-[#05050A] hover:bg-gray-100 transition-colors shadow-xl"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-[6px] bg-[var(--site-panel-inverse)] px-6 py-3.5 text-sm font-bold text-[var(--site-inverse-text)] transition-colors"
                   >
                     <Mail size={16} />
-                    Get In Touch
+                    发起联系
                   </Link>
                 </MagneticButton>
                 <MagneticButton>
                   <a
-                    href="mailto:hello@myportfolio.com"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-8 py-3.5 text-sm font-semibold text-gray-300 hover:border-white/20 hover:text-white transition-all"
+                    href="mailto:llf374603@gmail.com"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-[6px] border border-white/16 bg-white/[0.04] px-6 py-3.5 text-sm font-bold text-white transition-colors hover:border-primary/50 hover:text-primary"
                   >
-                    hello@myportfolio.com
+                    llf374603@gmail.com
                     <ArrowRight size={14} />
                   </a>
                 </MagneticButton>
               </div>
-              <p className="mt-6 text-xs text-gray-600">
-                Usually reply within 24 hours
+              <p className="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-white/42">
+                邮箱 / GitHub / 作品集均可联系
               </p>
             </RevealText>
           </div>
