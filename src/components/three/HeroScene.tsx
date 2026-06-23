@@ -770,7 +770,7 @@ function CSSFallback({ themeMode }: { themeMode: ThemeMode }) {
   const palette = scenePalettes[themeMode];
 
   return (
-    <div className="absolute inset-0 overflow-hidden" aria-hidden>
+    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
       <div
         className="absolute left-1/2 top-1/2 h-[min(620px,128vw)] w-[min(620px,128vw)] -translate-x-1/2 -translate-y-1/2 opacity-80"
         style={{

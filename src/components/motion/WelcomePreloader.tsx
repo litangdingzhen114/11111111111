@@ -73,7 +73,7 @@ function hasSeenPreloader() {
   try {
     return window.sessionStorage.getItem(sessionKey) === "true";
   } catch {
-    return true;
+    return false;
   }
 }
 
@@ -126,10 +126,7 @@ export default function WelcomePreloader() {
     [featuredProjects]
   );
   const preloadImages = useMemo(
-    () => {
-      if (shouldSkipMediaPreload()) return [];
-
-      return uniqueItems(
+    () => {      return uniqueItems(
         projects
           .slice(0, 2)
           .map((project) => project.coverImage)
