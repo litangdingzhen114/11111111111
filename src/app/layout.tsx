@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | sunmaosun的作品集",
   },
   icons: {
-    icon: "/projects/frieren/frieren-welcome.png",
+    icon: "/favicon.jpg",
   },
   description:
     "AI 产品经理方向项目站，整理 Agent、AIGC 工作流、小程序和 Web 原型项目。",
