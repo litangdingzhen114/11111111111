@@ -128,7 +128,7 @@ export default function WelcomePreloader() {
   const preloadImages = useMemo(
     () => {      return uniqueItems(
         projects
-          .slice(0, 2)
+          .filter(project => project.featured)
           .map((project) => project.coverImage)
           .filter(Boolean) as string[]
       );
