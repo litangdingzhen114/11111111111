@@ -1118,3 +1118,7 @@ html[data-theme-mode="day"] .text-gray-400 {
 html[data-theme-mode="day"] .text-gray-600 {
   color: var(--site-muted-strong) !important;
 }
+
+/* Hide preloader for returning visitors */
+html.preloader-seen .site-preloader { display: none !important; }
+

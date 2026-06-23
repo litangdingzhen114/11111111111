@@ -52,6 +52,19 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                if (window.sessionStorage.getItem('sunmaosun-preloader-seen') === 'true') {
+                  document.documentElement.classList.add('preloader-seen');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
       <body className="flex min-h-[100svh] flex-col bg-background text-foreground">
         <WelcomePreloader />
         <SmoothScroll>

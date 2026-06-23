@@ -138,15 +138,11 @@ export default function WelcomePreloader() {
 
   const [progress, setProgress] = useState(8);
   const [isExiting, setIsExiting] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(pathname === "/");
 
   useEffect(() => {
-    if (pathname === "/" && shouldShowPreloaderOnPath() && !hasSeenPreloader()) {
-      const timerId = window.setTimeout(() => {
-        setIsVisible(true);
-      }, 0);
-
-      return () => window.clearTimeout(timerId);
+    if (pathname !== "/" || hasSeenPreloader()) {
+      setIsVisible(false);
     }
   }, [pathname]);
 
