@@ -3,8 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import SmoothScroll from "@/components/motion/SmoothScroll";
 import WelcomePreloader from "@/components/motion/WelcomePreloader";
+import SmoothScroll from "@/components/motion/SmoothScroll";
 import AccessibilityWidget from "@/components/accessibility/AccessibilityWidget";
 import LanguageRuntime from "@/components/accessibility/LanguageRuntime";
 
@@ -20,8 +20,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "sunmaosun - AI 产品经理作品集",
-    template: "%s | 个人项目站",
+    default: "sunmaosun的作品集",
+    template: "%s | sunmaosun的作品集",
+  },
+  icons: {
+    icon: "/projects/frieren/frieren-welcome.png",
   },
   description:
     "AI 产品经理方向项目站，整理 Agent、AIGC 工作流、小程序和 Web 原型项目。",
@@ -46,6 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="zh-CN"
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
       <body className="flex min-h-[100svh] flex-col bg-background text-foreground">

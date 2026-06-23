@@ -19,28 +19,28 @@ export interface Capability {
 
 export const capabilities: Capability[] = [
   {
-    title: "AI 产品设计",
+    title: "产品拆解",
     icon: Lightbulb,
     description:
-      "围绕 Agent、RAG、AIGC 工作流和垂直行业助手，拆解用户场景、MVP 范围、流程和风险边界。",
+      "先把用户、任务和限制条件讲清楚，再决定 AI 应该出现在哪一步。",
   },
   {
     title: "交互原型",
     icon: Code2,
     description:
-      "使用 React、Next.js、TypeScript、Vite、Tailwind CSS 和微信小程序快速做出可演示的产品原型。",
+      "用 React、Next.js、Vite 和微信小程序把想法做成能点开的页面。",
   },
   {
-    title: "全栈落地",
+    title: "后端与接口",
     icon: Server,
     description:
-      "用 FastAPI、Express、SQLite、JSON 数据服务和流式接口，把 AI 能力接到真实页面和业务流程里。",
+      "需要接口、数据库或流式回复时，会先用 FastAPI、Express 和 SQLite 搭出能跑的版本。",
   },
   {
-    title: "内容与数据验证",
+    title: "反馈观察",
     icon: Sparkles,
     description:
-      "通过对话日志、意图分布、打卡指标、内容播放数据等反馈，判断原型是否真的解决问题。",
+      "会看对话记录、播放量、打卡数据这些反馈，判断哪里真的有用，哪里只是看起来完整。",
   },
 ];
 
@@ -54,33 +54,33 @@ export interface ProcessStep {
 export const processSteps: ProcessStep[] = [
   {
     number: "01",
-    title: "拆场景",
+    title: "看问题",
     icon: Search,
-    description: "先确认用户是谁、任务是什么、失败点在哪里，再决定 AI 应该进入哪一段流程。",
+    description: "先确认谁会用、想完成什么、现在卡在哪里，而不是一上来就想功能。",
   },
   {
     number: "02",
-    title: "定边界",
+    title: "划红线",
     icon: Target,
-    description: "明确 MVP 范围、模型职责、人工兜底、风险提示和可验证指标，避免功能无限扩散。",
+    description: "想清楚哪些事 AI 可以做，哪些必须转人工，哪些回答不能让模型随便编。",
   },
   {
     number: "03",
-    title: "画流程",
+    title: "拆页面",
     icon: Palette,
-    description: "把需求写成页面、状态、节点、输入输出和异常分支，让产品逻辑可以被讨论和实现。",
+    description: "把需求拆成页面、状态、输入输出和异常情况，先让结构能被看懂。",
   },
   {
     number: "04",
-    title: "做原型",
+    title: "做出来",
     icon: Hammer,
-    description: "用前端、小程序、后端代理和 API 接入做出可演示版本，尽快看到真实交互效果。",
+    description: "用前端、小程序、后端代理和 API 接入做一个小版本，先看到真实交互。",
   },
   {
     number: "05",
-    title: "看反馈",
+    title: "回头改",
     icon: RotateCcw,
-    description: "根据日志、内容数据、任务完成情况和用户反馈调整流程，而不是只停留在想法层面。",
+    description: "根据日志、内容数据和实际体验继续改，不把第一次做出来的东西当最终答案。",
   },
 ];
 
@@ -113,7 +113,7 @@ export interface Stat {
 
 export const stats: Stat[] = [
   { value: "7", label: "项目整理" },
-  { value: "3", label: "AI 产品原型" },
-  { value: "20", suffix: "+", label: "AIGC 作品产出" },
+  { value: "3", label: "AI 原型" },
+  { value: "20", suffix: "+", label: "AIGC 作品" },
   { value: "25", suffix: "w", label: "单条最高播放" },
 ];

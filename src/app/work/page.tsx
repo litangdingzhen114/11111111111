@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { projects, type ProjectType } from "@/data/projects";
@@ -27,19 +28,21 @@ export default function WorkPage() {
   return (
     <div className="pt-28 pb-20 sm:pt-32 sm:pb-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-        <RevealText className="mb-12 sm:mb-16">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary">
-            作品集
-          </p>
-          <h1 className="mt-3 text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
-            我的项目
-          </h1>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-gray-400 sm:text-lg">
-            这里整理了我从 0 到 1 推进过的 AI 产品、小程序和 Web 项目。每个案例都尽量记录场景、流程、边界和原型实现，而不是只放最终截图。
+        <RevealText className="mb-10 grid gap-6 sm:mb-12 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-widest text-primary">
+              作品集
+            </p>
+            <h1 className="mt-3 text-4xl font-bold text-[var(--site-text)] sm:text-5xl lg:text-6xl">
+              我的项目
+            </h1>
+          </div>
+          <p className="max-w-2xl text-base leading-7 text-[var(--site-muted)] sm:text-lg lg:ml-auto">
+            这里放了我这段时间做过的几个项目。每个案例都会尽量写清楚：为什么做、我负责什么、最后做成了什么，而不只是贴几张图。
           </p>
         </RevealText>
 
-        <div className="mb-10 flex flex-wrap gap-2 sm:mb-12">
+        <div className="project-filter-bar sticky top-20 z-20 mb-8 -mx-2 flex flex-wrap gap-2 rounded-[8px] border p-2 backdrop-blur sm:mb-10">
           {allTypes.map((type) => (
             <button
               key={type}
@@ -71,13 +74,33 @@ export default function WorkPage() {
               >
                 <Link
                   href={`/work/${project.slug}`}
-                  className="project-card-surface group block overflow-hidden rounded-[8px] border transition-all sm:rounded-2xl"
+                  className="project-card-surface project-hover-lift group block overflow-hidden rounded-[8px] border transition duration-500 hover:-translate-y-1 sm:rounded-2xl"
                 >
-                  <div
-                    className={`aspect-[16/9] bg-gradient-to-br ${project.coverGradient} flex items-center justify-center transition-transform duration-300 group-hover:scale-[1.015]`}
-                  >
-                    <div className="text-6xl font-black text-white/10 select-none sm:text-7xl">
-                      {project.title.charAt(0)}
+                  <div className={`relative aspect-[16/9] overflow-hidden bg-gradient-to-br ${project.coverGradient}`}>
+                    {project.coverImage ? (
+                      <Image
+                        src={project.coverImage}
+                        alt={project.coverAlt ?? project.title}
+                        fill
+                        priority={i === 0}
+                        loading={i === 0 ? "eager" : undefined}
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        className="object-cover transition duration-700 ease-out group-hover:scale-[1.035]"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_20%,rgba(143,163,255,0.32),transparent_32%),radial-gradient(circle_at_74%_72%,rgba(93,183,163,0.24),transparent_34%),linear-gradient(135deg,rgba(255,255,255,0.08),transparent)]" />
+                    )}
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,6,10,0.04),rgba(4,6,10,0.66))]" />
+                    <div className="absolute left-4 top-4 rounded-full border border-white/15 bg-black/28 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.24em] text-[var(--site-text)]/72 backdrop-blur">
+                      Case {String(i + 1).padStart(2, "0")}
+                    </div>
+                    <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
+                      <span className="rounded-[6px] bg-white/90 px-3 py-1.5 text-[11px] font-black text-[#111821]">
+                        {project.year}
+                      </span>
+                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-[6px] bg-white text-[#111821] transition duration-300 group-hover:-translate-y-1 group-hover:rotate-3">
+                        <ArrowUpRight size={18} />
+                      </span>
                     </div>
                   </div>
 
@@ -85,29 +108,22 @@ export default function WorkPage() {
                     <div className="flex items-start justify-between">
                       <div>
                         <div className="mb-2 flex flex-wrap items-center gap-2 sm:gap-3">
-                          <span className="text-xs font-mono text-primary">
-                            {project.year}
-                          </span>
                           {project.type.map((t) => (
-                            <span key={t} className="text-xs text-gray-600">
+                            <span key={t} className="text-xs text-[var(--site-muted-strong)]">
                               {t}
                             </span>
                           ))}
                         </div>
-                        <h2 className="text-lg font-bold leading-snug text-white transition-colors group-hover:text-primary sm:text-xl">
+                        <h2 className="text-lg font-bold leading-snug text-[var(--site-text)] transition-colors group-hover:text-primary sm:text-xl">
                           {project.title}
                         </h2>
                         <p className="mt-1 text-sm text-gray-500">
                           {project.role}
                         </p>
                       </div>
-                      <ArrowUpRight
-                        size={20}
-                        className="mt-1 text-gray-600 transition-colors group-hover:text-primary"
-                      />
                     </div>
 
-                    <p className="mt-3 text-sm leading-relaxed text-gray-400">
+                    <p className="mt-3 text-sm leading-relaxed text-[var(--site-muted)]">
                       {project.description}
                     </p>
 
@@ -115,7 +131,7 @@ export default function WorkPage() {
                       {project.stack.map((tech) => (
                         <span
                           key={tech}
-                          className="rounded-full border border-white/[0.06] bg-white/[0.04] px-3 py-1 text-xs text-gray-400"
+                          className="rounded-full border border-white/[0.06] bg-[var(--site-panel)] px-3 py-1 text-xs text-[var(--site-muted)]"
                         >
                           {tech}
                         </span>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
 const nightPalettes = {
@@ -58,52 +58,52 @@ const nightPalettes = {
 
 const dayPalettes = {
   hero: {
-    base: "#F5EFE4",
+    base: "#F5F6F2",
     glow:
       "radial-gradient(circle at 22% 18%, rgba(63,95,122,0.12), transparent 34%), radial-gradient(circle at 80% 16%, rgba(77,119,113,0.1), transparent 32%)",
   },
   overview: {
-    base: "#F1E9DC",
+    base: "#EEF4EF",
     glow:
       "radial-gradient(circle at 18% 28%, rgba(77,119,113,0.11), transparent 34%), radial-gradient(circle at 74% 64%, rgba(154,106,69,0.09), transparent 32%)",
   },
   problem: {
-    base: "#F3EADF",
+    base: "#F3EFE8",
     glow:
       "radial-gradient(circle at 24% 30%, rgba(154,106,69,0.1), transparent 36%), radial-gradient(circle at 78% 12%, rgba(63,95,122,0.1), transparent 34%)",
   },
   solution: {
-    base: "#EDF2EE",
+    base: "#EAF2F1",
     glow:
       "radial-gradient(circle at 22% 18%, rgba(77,119,113,0.12), transparent 32%), radial-gradient(circle at 82% 58%, rgba(63,95,122,0.08), transparent 34%)",
   },
   build: {
-    base: "#F4ECE0",
+    base: "#F1F3EE",
     glow:
       "radial-gradient(circle at 16% 70%, rgba(63,95,122,0.09), transparent 34%), radial-gradient(circle at 82% 20%, rgba(154,106,69,0.08), transparent 32%)",
   },
   decisions: {
-    base: "#EFE7D9",
+    base: "#ECEFF3",
     glow:
       "radial-gradient(circle at 20% 22%, rgba(63,95,122,0.09), transparent 34%), radial-gradient(circle at 80% 70%, rgba(77,119,113,0.08), transparent 32%)",
   },
   architecture: {
-    base: "#EEF1E7",
+    base: "#EAF1EA",
     glow:
       "radial-gradient(circle at 26% 18%, rgba(77,119,113,0.11), transparent 34%), radial-gradient(circle at 82% 64%, rgba(63,95,122,0.08), transparent 34%)",
   },
   impact: {
-    base: "#F2E8DD",
+    base: "#F2EEE8",
     glow:
       "radial-gradient(circle at 18% 22%, rgba(154,106,69,0.09), transparent 34%), radial-gradient(circle at 76% 62%, rgba(63,95,122,0.08), transparent 34%)",
   },
   content: {
-    base: "#F5EFE4",
+    base: "#F5F6F2",
     glow:
       "radial-gradient(circle at 20% 24%, rgba(63,95,122,0.08), transparent 34%), radial-gradient(circle at 82% 58%, rgba(77,119,113,0.07), transparent 34%)",
   },
   next: {
-    base: "#F5EFE4",
+    base: "#F5F6F2",
     glow:
       "radial-gradient(circle at 18% 30%, rgba(63,95,122,0.08), transparent 34%), radial-gradient(circle at 78% 62%, rgba(154,106,69,0.07), transparent 34%)",
   },
@@ -122,6 +122,8 @@ export default function ProjectColorStory({
 }) {
   const [activeTheme, setActiveTheme] = useState<PaletteKey>("hero");
   const [themeMode, setThemeMode] = useState<"night" | "day">("night");
+  const activeThemeRef = useRef<PaletteKey>("hero");
+  const themeFrameRef = useRef<number | null>(null);
   const palette =
     themeMode === "day" ? dayPalettes[activeTheme] : nightPalettes[activeTheme];
 
@@ -141,8 +143,15 @@ export default function ProjectColorStory({
         if (!visible) return;
 
         const nextTheme = visible.target.getAttribute("data-project-theme");
-        if (isPaletteKey(nextTheme)) {
-          setActiveTheme(nextTheme);
+        if (isPaletteKey(nextTheme) && activeThemeRef.current !== nextTheme) {
+          activeThemeRef.current = nextTheme;
+          if (themeFrameRef.current !== null) {
+            window.cancelAnimationFrame(themeFrameRef.current);
+          }
+          themeFrameRef.current = window.requestAnimationFrame(() => {
+            setActiveTheme(nextTheme);
+            themeFrameRef.current = null;
+          });
         }
       },
       {
@@ -152,7 +161,12 @@ export default function ProjectColorStory({
     );
 
     sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      if (themeFrameRef.current !== null) {
+        window.cancelAnimationFrame(themeFrameRef.current);
+      }
+    };
   }, []);
 
   useEffect(() => {

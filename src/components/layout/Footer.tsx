@@ -11,30 +11,30 @@ function GithubIcon({ size = 18 }: { size?: number }) {
 
 const socialLinks = [
   { icon: GithubIcon, href: "https://github.com/litangdingzhen114", label: "GitHub" },
-  { icon: Mail, href: "mailto:llf374603@gmail.com", label: "邮箱" },
+  { icon: Mail, href: "mailto:sunmoe.dev@gmail.com", label: "邮箱" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-background">
+    <footer className="border-t border-[var(--site-line)] bg-background">
       <div className="section-shell py-12">
         <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <div className="text-center md:text-left">
             <Link
               href="/"
-              className="inline-flex items-center gap-3 text-lg font-bold tracking-tight text-white transition-colors hover:text-primary"
+              className="inline-flex items-center gap-3 text-lg font-bold tracking-tight text-[var(--site-text)] transition-colors hover:text-primary"
             >
-              <span className="grid h-8 w-8 place-items-center rounded-[6px] border border-white/[0.12] text-sm text-primary">
+              <span className="grid h-8 w-8 place-items-center rounded-[6px] border border-[var(--site-line)] text-sm text-primary">
                 S
               </span>
               sunmaosun
             </Link>
-            <p className="mt-2 text-sm text-white/[0.42]">
-              AI 产品经理方向 / 原型开发
+            <p className="mt-2 text-sm text-[var(--site-muted)]">
+              AI 产品方向 / 应用搭建
             </p>
           </div>
 
-          <div className="flex justify-center gap-6 text-sm text-white/[0.48] md:gap-8">
+          <div className="flex justify-center gap-6 text-sm text-[var(--site-muted)] md:gap-8">
             <Link href="/work" className="transition-colors hover:text-primary">
               作品
             </Link>
@@ -57,7 +57,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.label}
-                className="rounded-[6px] border border-white/10 p-2 text-white/[0.38] transition-all hover:border-primary/40 hover:text-primary"
+                className="rounded-[6px] border border-[var(--site-line)] p-2 text-[var(--site-muted)] transition-all hover:border-primary/40 hover:text-primary"
               >
                 <link.icon size={18} />
               </a>
@@ -65,12 +65,12 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col items-center gap-4 border-t border-white/10 pt-8 md:flex-row md:justify-between">
-          <p className="text-xs text-white/30">
+        <div className="mt-8 flex flex-col items-center gap-4 border-t border-[var(--site-line)] pt-8 md:flex-row md:justify-between">
+          <p className="text-xs text-[var(--site-muted)]">
             © {new Date().getFullYear()} sunmaosun. Portfolio in progress.
           </p>
-          <p className="text-xs text-white/30">
-            用产品思维、AI 工作流和代码原型整理项目
+          <p className="text-xs text-[var(--site-muted)]">
+            用代码把项目和想法慢慢整理出来
           </p>
         </div>
       </div>

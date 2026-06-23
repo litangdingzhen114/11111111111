@@ -138,7 +138,7 @@ function OptionGroup({
 }) {
   return (
     <div className="space-y-2">
-      <div className="flex items-center gap-2 text-xs font-black tracking-tight text-white">
+      <div className="flex items-center gap-2 text-xs font-black tracking-tight text-[var(--site-text)]">
         <span className="text-sky-300">{icon}</span>
         {label}
       </div>
@@ -163,8 +163,8 @@ function ChoiceButton({
       className={cn(
         "min-h-10 flex-1 rounded-[4px] border px-3 text-xs font-semibold transition-colors",
         active
-          ? "a11y-choice-active border-sky-200 bg-sky-300 text-[#05070a] shadow-[0_0_0_2px_rgba(186,230,253,0.26)]"
-          : "border-transparent bg-white/[0.09] text-white hover:bg-white/[0.14]"
+          ? "a11y-choice-active border-[color:var(--a11y-active-bg)]"
+          : "border-transparent bg-white/[0.09] text-[var(--site-text)] hover:bg-white/[0.14]"
       )}
     >
       {children}
@@ -194,8 +194,8 @@ function ToggleRow({
       className={cn(
         "flex min-h-11 w-full items-center justify-between rounded-[4px] px-4 text-left transition-colors",
         active
-          ? "a11y-choice-active bg-sky-300 text-[#05070a]"
-          : "bg-white/[0.09] text-white hover:bg-white/[0.14]"
+          ? "a11y-choice-active"
+          : "bg-white/[0.09] text-[var(--site-text)] hover:bg-white/[0.14]"
       )}
     >
       <span className="flex items-center gap-2 text-xs font-semibold">
@@ -325,8 +325,8 @@ export default function AccessibilityWidget() {
           className={cn(
             "grid h-12 w-12 place-items-center rounded-full border shadow-2xl transition-all sm:h-14 sm:w-14",
             open
-              ? "a11y-fab-active border-sky-200 bg-sky-300 text-[#05070a]"
-              : "a11y-fab border-white/10 bg-black text-white hover:border-sky-300/70"
+              ? "a11y-fab-active border-[color:var(--a11y-active-bg)]"
+              : "a11y-fab"
           )}
         >
           {open ? <X size={28} /> : <Accessibility size={28} />}
@@ -340,11 +340,11 @@ export default function AccessibilityWidget() {
           aria-modal="false"
           aria-label={t.title}
           data-lenis-prevent
-          className="a11y-panel fixed bottom-20 right-3 z-[79] max-h-[min(620px,calc(100svh-6rem))] w-[min(360px,calc(100vw-1.5rem))] overflow-y-auto overscroll-contain rounded-[8px] border border-white/10 bg-[#15171b] p-4 shadow-[0_18px_48px_rgba(0,0,0,0.34)] [scrollbar-gutter:stable] sm:bottom-24 sm:right-6 sm:w-[372px]"
+          className="a11y-panel fixed bottom-20 right-3 z-[79] max-h-[min(620px,calc(100svh-6rem))] w-[min(360px,calc(100vw-1.5rem))] overflow-y-auto overscroll-contain rounded-[8px] border p-3.5 [scrollbar-gutter:stable] sm:bottom-24 sm:right-6 sm:w-[372px] sm:p-4"
         >
           <div className="mb-4 flex items-center gap-2">
             <Accessibility size={20} className="text-sky-300" />
-            <h2 className="text-xl font-black tracking-tight text-white">
+            <h2 className="text-xl font-black tracking-tight text-[var(--site-text)]">
               {t.title}
             </h2>
           </div>
@@ -432,7 +432,7 @@ export default function AccessibilityWidget() {
             </OptionGroup>
 
             {showHelp && (
-              <p className="rounded-[4px] border border-sky-300/30 bg-sky-300/10 p-3 text-xs leading-5 text-sky-100">
+              <p className="rounded-[4px] border border-[var(--site-line)] bg-white/[0.09] p-3 text-xs leading-5 text-sky-100">
                 {t.helpText}
               </p>
             )}
@@ -440,7 +440,7 @@ export default function AccessibilityWidget() {
             <button
               type="button"
               onClick={() => setShowHelp((value) => !value)}
-              className="flex min-h-11 w-full items-center gap-2 rounded-[4px] bg-white/[0.09] px-4 text-left text-xs font-semibold text-white transition-colors hover:bg-white/[0.14]"
+              className="flex min-h-11 w-full items-center gap-2 rounded-[4px] bg-white/[0.09] px-4 text-left text-xs font-semibold text-[var(--site-text)] transition-colors hover:bg-white/[0.14]"
             >
               <HelpCircle size={17} />
               {t.help}
@@ -449,7 +449,7 @@ export default function AccessibilityWidget() {
             <button
               type="button"
               onClick={reset}
-              className="flex min-h-11 w-full items-center justify-center gap-2 rounded-[4px] bg-white/[0.09] px-4 text-xs font-semibold text-white transition-colors hover:bg-white/[0.14]"
+              className="flex min-h-11 w-full items-center justify-center gap-2 rounded-[4px] bg-white/[0.09] px-4 text-xs font-semibold text-[var(--site-text)] transition-colors hover:bg-white/[0.14]"
             >
               <RotateCcw size={17} />
               {t.reset}

@@ -48,7 +48,7 @@ function AnimatedCounter({
   }, [inView, value]);
 
   return (
-    <span className="text-4xl font-black tracking-tight text-white sm:text-6xl">
+    <span className="text-4xl font-black tracking-tight text-[var(--site-text)] sm:text-6xl">
       {count}
       {suffix}
     </span>
@@ -61,9 +61,9 @@ export default function ProofBar() {
   const marquee = [...loopItems, ...loopItems];
 
   return (
-    <section className="relative overflow-hidden border-y border-white/10 bg-background">
-      <div className="marquee-mask border-b border-white/10 py-3 sm:py-4">
-        <div className="marquee-track flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/[0.45] sm:gap-5 sm:text-xs sm:tracking-[0.28em]">
+    <section className="relative overflow-hidden border-y border-[var(--site-line)] bg-background">
+      <div className="marquee-mask border-b border-[var(--site-line)] py-3 sm:py-4">
+        <div className="marquee-track flex items-center gap-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--site-muted)] sm:gap-5 sm:text-xs sm:tracking-[0.28em]">
           {marquee.map((item, index) => (
             <span key={`${item}-${index}`} className="flex items-center gap-5">
               {item}
@@ -84,7 +84,7 @@ export default function ProofBar() {
               suffix={stat.suffix}
               inView={isInView}
             />
-            <p className="mt-3 text-sm text-white/[0.48]">{stat.label}</p>
+            <p className="mt-3 text-sm text-[var(--site-muted)]">{stat.label}</p>
           </div>
         ))}
       </div>

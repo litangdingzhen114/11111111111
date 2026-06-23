@@ -12,11 +12,11 @@ function GithubIcon({ size = 18 }: { size?: number }) {
 
 export const metadata: Metadata = {
   title: "联系我",
-  description: "欢迎联系我，一起聊聊 AI 产品、前端原型或小程序项目。",
+  description: "欢迎联系我，聊项目、原型、小程序或实习机会。",
 };
 
 const contactLinks = [
-  { icon: Mail, label: "邮箱", value: "llf374603@gmail.com", href: "mailto:llf374603@gmail.com" },
+  { icon: Mail, label: "邮箱", value: "sunmoe.dev@gmail.com", href: "mailto:sunmoe.dev@gmail.com" },
   { icon: GithubIcon, label: "GitHub", value: "github.com/litangdingzhen114", href: "https://github.com/litangdingzhen114" },
   { icon: Globe, label: "作品集", value: "www.sunmaosun.com", href: "https://personal.sun.com" },
   { icon: MapPin, label: "所在城市", value: "杭州", href: "https://maps.google.com/?q=Hangzhou" },
@@ -29,13 +29,13 @@ export default function ContactPage() {
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
           <div>
             <p className="text-sm font-semibold uppercase tracking-widest text-primary">联系</p>
-            <h1 className="mt-3 text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
+            <h1 className="mt-3 text-4xl font-bold text-[var(--site-text)] sm:text-5xl lg:text-6xl">
               一起把
               <br />
               <span className="text-gradient">好想法做出来。</span>
             </h1>
-            <p className="mt-6 text-base leading-7 text-gray-400 sm:text-lg sm:leading-relaxed">
-              如果你想了解我的项目细节，或者有 AI 产品、前端原型、小程序相关机会，欢迎发消息给我。
+            <p className="mt-6 text-base leading-7 text-[var(--site-muted)] sm:text-lg sm:leading-relaxed">
+              如果你想了解某个项目，或者有产品、前端、小程序相关机会，可以发消息给我。
             </p>
             <div className="mt-8 flex items-center gap-2 text-sm text-gray-500">
               <MapPin size={14} /> 杭州 / 可远程沟通
@@ -49,11 +49,11 @@ export default function ContactPage() {
                       <link.icon size={18} />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-sm font-semibold text-white">{link.label}</p>
+                      <p className="text-sm font-semibold text-[var(--site-text)]">{link.label}</p>
                       <p className="truncate text-xs text-gray-500">{link.value}</p>
                     </div>
                   </div>
-                  <ArrowUpRight size={16} className="shrink-0 text-gray-600 transition-colors group-hover:text-primary" />
+                  <ArrowUpRight size={16} className="shrink-0 text-[var(--site-muted-strong)] transition-colors group-hover:text-primary" />
                 </a>
               ))}
             </div>

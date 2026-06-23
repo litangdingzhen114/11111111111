@@ -22,17 +22,28 @@ export default function SmoothScroll({
   useEffect(() => {
     let cleanupLenis: (() => void) | null = null;
 
-    const shouldReduceMotion = () => {
+    const shouldUseSmoothScroll = () => {
       const prefersReducedMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
       ).matches;
       const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
-      const smallViewport = window.innerWidth < 768;
+      const smallViewport = window.innerWidth < 1024;
+      const memoryNavigator = navigator as Navigator & { deviceMemory?: number };
+      const deviceMemory = memoryNavigator.deviceMemory ?? 8;
+      const cpuCores = navigator.hardwareConcurrency ?? 8;
+      const connection = navigator as Navigator & {
+        connection?: { saveData?: boolean };
+      };
+
       return (
-        prefersReducedMotion ||
-        coarsePointer ||
-        smallViewport ||
-        document.documentElement.dataset.reducedMotion === "true"
+        window.location.pathname === "/" &&
+        !prefersReducedMotion &&
+        !coarsePointer &&
+        !smallViewport &&
+        document.documentElement.dataset.reducedMotion !== "true" &&
+        !connection.connection?.saveData &&
+        deviceMemory >= 6 &&
+        cpuCores >= 6
       );
     };
 
@@ -43,8 +54,9 @@ export default function SmoothScroll({
     };
 
     const setupLenis = () => {
-      if (shouldReduceMotion()) {
+      if (!shouldUseSmoothScroll()) {
         destroyLenis();
+        document.documentElement.dataset.scrollState = "native";
         return;
       }
       if (cleanupLenis) return;
@@ -60,10 +72,10 @@ export default function SmoothScroll({
         overscroll: false,
         stopInertiaOnNavigate: true,
         anchors: {
-          offset: -80,
-          duration: 0.85,
+          offset: -96,
+          duration: 0.68,
           easing: smoothEase,
-          lock: true,
+          lock: false,
         },
       });
 
@@ -97,8 +109,9 @@ export default function SmoothScroll({
     };
 
     const handleAccessibilityChange = () => {
-      if (shouldReduceMotion()) {
+      if (!shouldUseSmoothScroll()) {
         destroyLenis();
+        document.documentElement.dataset.scrollState = "native";
       } else {
         setupLenis();
       }
@@ -124,6 +137,7 @@ export default function SmoothScroll({
       "portfolio-accessibility-panel",
       handleAccessibilityPanel
     );
+    window.addEventListener("portfolio-route-change", handleAccessibilityChange);
     window.addEventListener("resize", handleAccessibilityChange, {
       passive: true,
     });
@@ -137,16 +151,26 @@ export default function SmoothScroll({
         "portfolio-accessibility-panel",
         handleAccessibilityPanel
       );
+      window.removeEventListener(
+        "portfolio-route-change",
+        handleAccessibilityChange
+      );
       window.removeEventListener("resize", handleAccessibilityChange);
       destroyLenis();
     };
   }, []);
 
   useEffect(() => {
-    lenisRef.current?.scrollTo(0, {
-      immediate: true,
-      force: true,
-    });
+    window.dispatchEvent(new Event("portfolio-route-change"));
+
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, {
+        immediate: true,
+        force: true,
+      });
+    } else {
+      window.scrollTo(0, 0);
+    }
     ScrollTrigger.refresh();
   }, [pathname]);
 

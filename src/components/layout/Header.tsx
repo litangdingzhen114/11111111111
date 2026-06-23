@@ -47,7 +47,7 @@ export default function Header() {
           <div className="flex h-16 items-center justify-between lg:h-20">
             <Link
               href="/"
-              className="text-lg font-bold tracking-tight text-white transition-colors hover:text-primary"
+              className="text-lg font-bold tracking-tight text-[var(--site-text)] transition-colors hover:text-primary"
             >
               <span className="text-primary">/</span> sunmaosun
             </Link>
@@ -60,8 +60,8 @@ export default function Header() {
                   className={cn(
                     "rounded-lg px-4 py-2 text-sm font-medium transition-colors",
                     pathname === item.href
-                      ? "bg-white/[0.06] text-white"
-                      : "text-gray-400 hover:bg-white/[0.04] hover:text-white"
+                      ? "bg-[var(--site-panel-hover)] text-[var(--site-text)]"
+                      : "text-[var(--site-muted)] hover:bg-[var(--site-panel)] hover:text-[var(--site-text)]"
                   )}
                 >
                   {item.label}
@@ -79,7 +79,7 @@ export default function Header() {
 
             <button
               onClick={() => setIsMobileOpen(!isMobileOpen)}
-              className="p-2 text-gray-400 transition-colors hover:text-white md:hidden"
+              className="p-2 text-[var(--site-muted)] transition-colors hover:text-[var(--site-text)] md:hidden"
               aria-label="切换菜单"
             >
               {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -111,8 +111,8 @@ export default function Header() {
                     className={cn(
                       "text-2xl font-semibold transition-colors",
                       pathname === item.href
-                        ? "text-white"
-                        : "text-gray-400 hover:text-white"
+                        ? "text-[var(--site-text)]"
+                        : "text-[var(--site-muted)] hover:text-[var(--site-text)]"
                     )}
                   >
                     {item.label}

@@ -64,18 +64,18 @@ export default function Hero() {
 
         <h1
           data-hero-animate
-          className="text-[clamp(2.7rem,12vw,5rem)] font-extrabold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-8xl"
+          className="text-[clamp(2.7rem,12vw,5rem)] font-extrabold leading-[1.02] tracking-tight text-[var(--site-text)] sm:text-6xl lg:text-8xl"
         >
-          AI 产品经理 &
+          Hello, 👋
           <br />
           <span className="text-gradient">
-            原型开发者
+            我是sunmaosun
           </span>
         </h1>
 
         <p
           data-hero-animate
-          className="mx-auto mt-5 max-w-2xl text-base leading-7 text-gray-400 sm:mt-6 sm:text-xl sm:leading-relaxed"
+          className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[var(--site-muted)] sm:mt-6 sm:text-xl sm:leading-relaxed"
         >
           我把 Agent、AIGC 工作流、小程序和 Web 项目整理在这里，记录从场景拆解、产品流程到可演示原型的完整过程。
         </p>
@@ -103,7 +103,7 @@ export default function Hero() {
           </MagneticButton>
         </div>
 
-        <p data-hero-animate className="mt-6 text-xs leading-6 text-gray-600 sm:mt-8 sm:text-sm">
+        <p data-hero-animate className="mt-6 text-xs leading-6 text-[var(--site-muted-strong)] sm:mt-8 sm:text-sm">
           当前重点：AI Agent / AIGC 工作流 / 垂直行业 AI 助手
         </p>
       </div>
