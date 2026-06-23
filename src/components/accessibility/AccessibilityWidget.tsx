@@ -340,7 +340,7 @@ export default function AccessibilityWidget() {
           aria-modal="false"
           aria-label={t.title}
           data-lenis-prevent
-          className="a11y-panel fixed bottom-20 right-3 z-[79] max-h-[min(620px,calc(100svh-6rem))] w-[min(360px,calc(100vw-1.5rem))] overflow-y-auto overscroll-contain rounded-[8px] border p-3.5 [scrollbar-gutter:stable] sm:bottom-24 sm:right-6 sm:w-[372px] sm:p-4"
+          className="a11y-panel fixed bottom-20 right-3 z-[79] max-h-[min(620px,calc(100svh-6rem))] w-[min(360px,calc(100vw-1.5rem))] overflow-y-auto rounded-[8px] border p-3.5 [scrollbar-gutter:stable] sm:bottom-24 sm:right-6 sm:w-[372px] sm:p-4"
         >
           <div className="mb-4 flex items-center gap-2">
             <Accessibility size={20} className="text-sky-300" />
