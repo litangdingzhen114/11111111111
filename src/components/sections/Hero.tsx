@@ -77,7 +77,7 @@ export default function Hero() {
           data-hero-animate
           className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[var(--site-muted)] sm:mt-6 sm:text-xl sm:leading-relaxed"
         >
-          我把 Agent、AIGC 工作流、小程序和 Web 项目整理在这里，记录从场景拆解、产品流程到可演示原型的完整过程。
+          我把 Agent、AIGC 工作流、小程序和 Web 项目整理在这里，每个项目都写了怎么拆场景、怎么理流程、怎么做成能演示的原型。
         </p>
 
         <div
