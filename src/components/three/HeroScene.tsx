@@ -1,6 +1,6 @@
 "use client";
 
-import { MutableRefObject, useEffect, useMemo, useRef, useState } from "react";
+import { Component, MutableRefObject, ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -860,10 +860,30 @@ function CSSFallback({ themeMode }: { themeMode: ThemeMode }) {
   );
 }
 
+class SceneErrorBoundary extends Component<
+  { fallback: ReactNode; children: ReactNode },
+  { hasError: boolean }
+> {
+  state = { hasError: false };
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch() {
+    // The CSS fallback renders instead; the rest of the page must stay alive.
+  }
+
+  render() {
+    return this.state.hasError ? this.props.fallback : this.props.children;
+  }
+}
+
 export default function HeroScene() {
   const themeMode = useThemeMode();
   const sceneRef = useRef<HTMLDivElement>(null);
   const pointerRef = useRef({ x: 0, y: 0 });
+  const [glFailed, setGlFailed] = useState(false);
   const [isSceneActive, setIsSceneActive] = useState(true);
   const [shouldRender3D] = useState(() => {
     if (typeof window === "undefined") return false;
@@ -921,23 +941,31 @@ export default function HeroScene() {
     return () => window.removeEventListener("pointermove", handlePointerMove);
   }, [isSceneActive, shouldRender3D]);
 
-  if (!shouldRender3D) {
+  if (!shouldRender3D || glFailed) {
     return <CSSFallback themeMode={themeMode} />;
   }
 
   return (
     <div ref={sceneRef} className="absolute inset-0" aria-hidden>
-      <Canvas
-        camera={{ position: [0, 0, 5.85], fov: 42 }}
-        dpr={[0.65, 1]}
-        frameloop={isSceneActive ? "demand" : "never"}
-        gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}
-        performance={{ min: 0.45 }}
-        style={{ pointerEvents: "none" }}
-      >
-        <FrameLimiter active={isSceneActive} />
-        <PortfolioAtlasScene pointerRef={pointerRef} themeMode={themeMode} />
-      </Canvas>
+      <SceneErrorBoundary fallback={<CSSFallback themeMode={themeMode} />}>
+        <Canvas
+          camera={{ position: [0, 0, 5.85], fov: 42 }}
+          dpr={[0.65, 1]}
+          frameloop={isSceneActive ? "demand" : "never"}
+          gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}
+          performance={{ min: 0.45 }}
+          style={{ pointerEvents: "none" }}
+          onCreated={({ gl }) => {
+            gl.domElement.addEventListener("webglcontextlost", (event) => {
+              event.preventDefault();
+              setGlFailed(true);
+            });
+          }}
+        >
+          <FrameLimiter active={isSceneActive} />
+          <PortfolioAtlasScene pointerRef={pointerRef} themeMode={themeMode} />
+        </Canvas>
+      </SceneErrorBoundary>
     </div>
   );
 }

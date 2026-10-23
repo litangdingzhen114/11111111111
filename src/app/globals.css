@@ -528,18 +528,8 @@ html:not([data-theme-mode="day"]) .hero-surface {
   @apply mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-10;
 }
 
-main > section:not(.hero-surface) {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 760px;
-}
-
 .project-scroll-section {
   scroll-margin-top: 7rem;
-}
-
-.project-heavy-media {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 860px;
 }
 
 .project-gallery-strip {
@@ -574,16 +564,6 @@ html[data-scroll-state="moving"] .project-hover-lift {
 .prose-custom h2,
 .prose-custom h3 {
   scroll-margin-top: 7rem;
-}
-
-@media (max-width: 768px) {
-  main > section:not(.hero-surface) {
-    contain-intrinsic-size: auto 680px;
-  }
-
-  .project-heavy-media {
-    contain-intrinsic-size: auto 560px;
-  }
 }
 
 .section-kicker {

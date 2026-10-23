@@ -59,7 +59,7 @@ export default function RevealText({
   );
 
   return (
-    <Tag ref={ref as React.Ref<never>} className={className} style={{ opacity: 0 }}>
+    <Tag ref={ref as React.Ref<never>} className={className}>
       {children}
     </Tag>
   );

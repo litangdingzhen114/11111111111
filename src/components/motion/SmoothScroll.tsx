@@ -129,6 +129,14 @@ export default function SmoothScroll({
     };
 
     setupLenis();
+
+    const handleLoad = () => ScrollTrigger.refresh();
+    if (document.readyState === "complete") {
+      ScrollTrigger.refresh();
+    } else {
+      window.addEventListener("load", handleLoad);
+    }
+
     window.addEventListener(
       "portfolio-accessibility-change",
       handleAccessibilityChange
@@ -143,6 +151,7 @@ export default function SmoothScroll({
     });
 
     return () => {
+      window.removeEventListener("load", handleLoad);
       window.removeEventListener(
         "portfolio-accessibility-change",
         handleAccessibilityChange
