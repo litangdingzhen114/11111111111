@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const contactLinks = [
   { icon: Mail, label: "邮箱", value: "sunmoe.dev@gmail.com", href: "mailto:sunmoe.dev@gmail.com" },
   { icon: GithubIcon, label: "GitHub", value: "github.com/litangdingzhen114", href: "https://github.com/litangdingzhen114" },
-  { icon: Globe, label: "作品集", value: "www.sunmaosun.com", href: "https://personal.sun.com" },
+  { icon: Globe, label: "作品集", value: "www.sunmaosun.com", href: "https://www.sunmaosun.com" },
   { icon: MapPin, label: "所在城市", value: "杭州", href: "https://maps.google.com/?q=Hangzhou" },
 ];
 
