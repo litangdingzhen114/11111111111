@@ -7,10 +7,10 @@ import RevealText from "@/components/motion/RevealText";
 
 export default function AboutPreview() {
   const focusAreas = [
-    { label: "产品拆解", value: 88 },
-    { label: "应用搭建", value: 92 },
-    { label: "流程整理", value: 86 },
-    { label: "内容表达", value: 78 },
+    { label: "产品拆解", level: "能独立交付", width: 75 },
+    { label: "应用搭建", level: "最拿手", width: 90 },
+    { label: "流程整理", level: "能独立交付", width: 75 },
+    { label: "内容表达", level: "还在补", width: 55 },
   ];
 
   return (
@@ -56,12 +56,12 @@ export default function AboutPreview() {
                 <div key={area.label}>
                   <div className="mb-3 flex items-center justify-between text-sm">
                     <span className="font-semibold text-[var(--site-text)]">{area.label}</span>
-                    <span className="font-mono text-[var(--site-muted)]">{area.value}%</span>
+                    <span className="text-[var(--site-muted)]">{area.level}</span>
                   </div>
                   <div className="h-px overflow-hidden bg-white/10">
                     <motion.div
                       initial={{ width: 0 }}
-                      whileInView={{ width: `${area.value}%` }}
+                      whileInView={{ width: `${area.width}%` }}
                       viewport={{ once: true }}
                       transition={{
                         delay: 0.25 + i * 0.12,
