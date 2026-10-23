@@ -118,17 +118,17 @@ const visualProfiles: Record<string, VisualProfile> = {
 const frierenVisuals = [
   {
     title: "Workflow overview",
-    caption: "Script, storyboard and video generation are arranged as one visible production chain.",
+    caption: "Script, storyboard and video generation run as one chain, and each step stays visible to the creator.",
     src: "/projects/frieren/frieren-workflow-overview.png",
   },
   {
     title: "Image node control",
-    caption: "Prompt fields, aspect ratio, model choice and reference assets stay inside one node surface.",
+    caption: "Each node holds its prompt fields, aspect ratio, model choice and reference images in one place.",
     src: "/projects/frieren/image-generator-node-panel.png",
   },
   {
     title: "Batch generation",
-    caption: "Repeated storyboard prompts can be handled as structured tasks instead of manual one-off prompts.",
+    caption: "Repeated storyboard prompts run as structured tasks instead of one-off manual work.",
     src: "/projects/frieren/image-generator-batch-mode.png",
   },
 ];
@@ -136,22 +136,22 @@ const frierenVisuals = [
 const dtcVisuals = [
   {
     title: "Product recommendation",
-    caption: "Sensitive-skin, budget and fragrance constraints are routed into structured product search.",
+    caption: "The agent turns sensitive skin, budget and fragrance limits into a structured product search.",
     src: "/projects/dtc/dtc-chat-product.png",
   },
   {
     title: "Verified order lookup",
-    caption: "Order status is shown only after order ID and checkout email are both present.",
+    caption: "The agent shows order status only after the shopper provides an order ID and the checkout email.",
     src: "/projects/dtc/dtc-chat-order-verified.png",
   },
   {
     title: "Coupon assist",
-    caption: "Promotion logic is handled as a sales assist flow instead of a loose refund promise.",
+    caption: "When a shopper hesitates on price, the agent offers a coupon. It never promises a refund.",
     src: "/projects/dtc/dtc-chat-coupon.png",
   },
   {
     title: "Risk escalation",
-    caption: "Reaction and urgent refund requests are escalated to a human review path.",
+    caption: "Allergy reactions and urgent refund requests go straight to a human reviewer.",
     src: "/projects/dtc/dtc-chat-escalation.png",
   },
 ];
@@ -159,7 +159,7 @@ const dtcVisuals = [
 const rehabVisuals = [
   {
     title: "Home service hub",
-    caption: "首页把名医预约、AI 初筛、康复打卡和资料袋入口收束在一个轻量服务台。",
+    caption: "首页把名医预约、AI 初筛、康复打卡和资料袋放在同一个轻量服务台里。",
     src: "/projects/rehab/rehab-home.png",
   },
   {
@@ -184,7 +184,7 @@ const rehabVisuals = [
   },
   {
     title: "Therapy plan library",
-    caption: "理疗方案页用于承接训练内容、适用场景和后续医生复核入口。",
+    caption: "理疗方案页列出训练内容和适用人群，并留了医生复核的入口。",
     src: "/projects/rehab/rehab-physio.png",
   },
 ];
@@ -217,7 +217,7 @@ const filmClubVisuals = [
   },
   {
     title: "AI learning track",
-    caption: "在影评内容之外扩展 AI 学习栏目，验证同一套内容架构的复用能力。",
+    caption: "影评之外还加了 AI 学习栏目，同一套内容架构换个主题照样能用。",
     src: "/projects/film-club/film-club-ai-learning.png",
   },
 ];
@@ -298,7 +298,7 @@ const lemanismVisuals = [
   },
   {
     title: "AI try-on entry",
-    caption: "AI 虚拟试衣入口先作为产品位占位，验证未来接入拍照量体和试穿能力的信息架构。",
+    caption: "AI 虚拟试衣先留了一个入口占位，位置和跳转都按以后真接入拍照量体和试穿功能来排。",
     src: "/projects/lemanism/lemanism-ai-tryon.png",
   },
 ];
