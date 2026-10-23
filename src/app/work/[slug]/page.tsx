@@ -767,7 +767,7 @@ function FilmClubOverviewMedia() {
         {[
           ["4 tracks", "覆盖《震耳欲聋》《雷锋》《小小的我》和 AI Learning 内容入口"],
           ["70+ records", "将活动投稿、影评和长文整理成可检索内容库"],
-          ["Live site", "线上地址：www.sunmaosun.com"],
+          ["Live site", "线上地址：film-club-sooty.vercel.app"],
           ["GitHub", "仓库：litangdingzhen114/film-club"],
         ].map(([value, label]) => (
           <div
@@ -782,7 +782,7 @@ function FilmClubOverviewMedia() {
 
       <div className="mt-5 flex flex-wrap gap-3">
         <a
-          href="https://www.sunmaosun.com"
+          href="https://film-club-sooty.vercel.app"
           target="_blank"
           rel="noreferrer"
           className="rounded-full bg-white px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-[#121212] transition-transform hover:-translate-y-0.5"
